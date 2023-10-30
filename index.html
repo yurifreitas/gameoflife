@@ -1,0 +1,43 @@
+<html>
+<title>Life</title>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --canvas-bg-color: rgba(0, 0, 0, 0); /* transparent */
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #canvas {
+            border: #504e52;
+            border-style: dashed;
+            border-width: 5;
+            outline: none;  /* because of the 'tabindex' focus trick */
+            background-color: var(--canvas-bg-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 'tabindex' is a trick to make the canvas capture key events -->
+    <canvas id="canvas" tabindex="1"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17"></script>
+    <!-- Importar o arquivo JavaScript separado -->
+    <script src="script.js"></script>
+
+    
+
+   
+
+</body>
+
+</html>
