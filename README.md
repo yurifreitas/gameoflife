@@ -1,52 +1,171 @@
-# Jogo da Vida - Simulação
+# 🧬 Game of Life — Simulação Emergente Interativa
 
-Este é um código de simulação do "Jogo da Vida", uma simulação de autômatos celulares em JavaScript.
+Uma simulação avançada de partículas baseada em regras dinâmicas que gera comportamento emergente em tempo real diretamente no navegador.
 
-## Configurações e Parâmetros
+🔗 **Acesse a simulação online:**
+https://yurifreitas.github.io/gameoflife/#91651088029
 
-### Variáveis Principais
+---
 
-- `maxRadius`: Raio máximo dos átomos.
-- `maxClusters`: Número máximo de aglomerados.
-- `minClusterSize`: Tamanho mínimo do aglomerado.
-- `predefinedColors`: Cores predefinidas para os átomos.
+## 🧠 Visão Geral
 
-### Configurações Gerais
+Este projeto expande o conceito clássico de autômatos celulares, inspirado no trabalho de John Conway, para um sistema contínuo de partículas com interações físicas parametrizadas.
 
-O objeto `settings` contém várias configurações para a simulação:
+Ao invés de uma grade discreta, o sistema simula:
 
-- `seed`: Semente para o gerador de números pseudoaleatórios.
-- `fps`: Quadros por segundo (FPS) da simulação.
-- `atoms`: Configurações dos átomos, incluindo o número de átomos por cor e o raio dos átomos.
-- `drawings`: Opções de desenho que afetam o desempenho, como a exibição de linhas entre átomos e o desenho de átomos como círculos.
-- `export`: Funções para exportar imagens e vídeos da simulação.
-- `explore`: Ativa ou desativa a exploração aleatória.
-- `explorePeriod`: Período de exploração aleatória.
-- `rules`: Regras da simulação.
-- `radii`: Raios dos átomos.
-- `colors`: Cores dos átomos.
-- `numColors`: Número de cores.
-- `time_scale`: Escala de tempo da simulação.
-- `viscosity`: Amortecimento de velocidade (pode ser maior que 1).
-- `gravity`: Gravidade (força de puxar para baixo).
-- `pulseDuration`: Duração do pulso ao clicar.
-- `wallRepel`: Repulsão das paredes.
-- Funções como `reset`, `randomRules`, `symmetricRules` e `gui` para controle e configuração da simulação.
+* Partículas com posição e velocidade
+* Forças de atração e repulsão entre elementos
+* Regras dinâmicas baseadas em cores
+* Formação espontânea de estruturas (clusters)
 
+O resultado é um **universo emergente determinístico**, controlado por uma seed numérica.
 
-## Uso
+---
 
-Para executar a simulação, abra o arquivo HTML em um navegador compatível com JavaScript. Use o teclado e o mouse para interagir com a simulação.
+## 🔗 Estrutura do Link
 
-## Interface Gráfica do Usuário (GUI)
+Formato:
 
-O código inclui uma GUI interativa para ajustar configurações em tempo real.
+```
+https://yurifreitas.github.io/gameoflife/#<seed>
+```
 
-## Exportação
+Exemplo:
 
-Você pode exportar imagens e vídeos da simulação usando as opções fornecidas no código.
+```
+https://yurifreitas.github.io/gameoflife/#91651088029
+```
 
-## Contribuições
+---
 
-Sinta-se à vontade para contribuir para este projeto ou enviar sugestões de melhorias.
+## 🔑 Seed
 
+A seed define completamente o comportamento da simulação:
+
+* Mesma seed → mesmo universo
+* Seeds diferentes → dinâmicas completamente distintas
+
+Isso permite:
+
+* Reprodução exata de padrões
+* Compartilhamento de "universos"
+* Exploração procedural controlada
+
+---
+
+## ⚙️ Modelo de Simulação
+
+Cada partícula ("átomo") é representada por:
+
+```
+[x, y, vx, vy, color]
+```
+
+---
+
+## 🔬 Interações
+
+As partículas interagem através de uma matriz de regras:
+
+```
+rules[colorA][colorB]
+```
+
+A força aplicada segue um modelo contínuo:
+
+```
+F = g / sqrt(d)
+```
+
+Onde:
+
+* g → intensidade da interação entre cores
+* d → distância entre partículas
+
+---
+
+## 🎨 Características Principais
+
+* 🧬 Sistema multi-agente contínuo
+* 🎲 Geração determinística via seed
+* 🎛️ Controle em tempo real via GUI
+* 🌈 Interações baseadas em cores
+* 🔁 Regras dinâmicas e mutáveis
+* 🧩 Detecção de clusters (agrupamentos)
+* 🎥 Exportação de imagem e vídeo
+* ⚡ Execução em tempo real no navegador
+
+---
+
+## 🎮 Controles
+
+### 🖱️ Mouse
+
+* Clique → aplica pulso de força local
+* Shift + clique → pulso inverso
+
+### ⌨️ Teclado
+
+* `r` → gerar novas regras aleatórias
+* `s` → aplicar regras simétricas
+* `o` → resetar partículas
+* `t` → alternar visualização de clusters
+
+---
+
+## 🧩 Interface (GUI)
+
+O projeto utiliza lil-gui para permitir:
+
+* Ajuste de parâmetros físicos
+* Controle de cores e regras
+* Manipulação da seed
+* Exportação de imagem e vídeo
+* Monitoramento de performance (FPS)
+
+---
+
+## 🔬 Parâmetros Importantes
+
+* `atoms.count` → quantidade de partículas por cor
+* `time_scale` → velocidade da simulação
+* `viscosity` → amortecimento do movimento
+* `gravity` → força gravitacional aplicada
+* `wallRepel` → repulsão nas bordas
+* `numColors` → número de grupos interativos
+
+---
+
+## 🚀 Como Executar Localmente
+
+1. Clone o repositório
+2. Abra o arquivo `index.html` no navegador
+
+Não há necessidade de build ou dependências externas além do navegador.
+
+---
+
+## 🧠 Conceito Avançado
+
+Este projeto pode ser interpretado como:
+
+* Um sistema de dinâmica não linear
+* Um simulador de matéria artificial
+* Um ambiente de comportamento emergente
+* Uma base para arte generativa procedural
+
+---
+
+## 📌 Possíveis Expansões
+
+* Renderização via WebGL / GPU
+* Exportação de estados como dados estruturados
+* Sistema de compartilhamento de seeds
+* Integração com áudio reativo
+* Aplicações em arte digital e visualização científica
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas. Sinta-se livre para abrir issues ou pull requests com melhorias, otimizações ou novas ideias.
