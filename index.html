@@ -1,43 +1,149 @@
-<html>
-<title>Life</title>
+<!DOCTYPE html>
 
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Life — Emergent System</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            color-scheme: dark;
-            --canvas-bg-color: rgba(0, 0, 0, 0); /* transparent */
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<!-- Performance + Rendering hints -->
+<meta name="color-scheme" content="dark">
 
-        #canvas {
-            border: #504e52;
-            border-style: dashed;
-            border-width: 5;
-            outline: none;  /* because of the 'tabindex' focus trick */
-            background-color: var(--canvas-bg-color);
-        }
-    </style>
+<style>
+    :root {
+        color-scheme: dark;
+
+        --bg-main: #050507;
+        --bg-gradient: radial-gradient(circle at center, #0a0a12 0%, #020203 100%);
+        --accent: #6cf;
+        --border: rgba(255,255,255,0.08);
+
+        --glass: rgba(255,255,255,0.03);
+        --blur: blur(12px);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        height: 100%;
+        background: var(--bg-main);
+        overflow: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-gradient);
+    }
+
+    /* Canvas container (glass effect) */
+    .canvas-wrapper {
+        position: relative;
+        width: 96vw;
+        height: 96vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--glass);
+        backdrop-filter: var(--blur);
+
+        border: 1px solid var(--border);
+        border-radius: 14px;
+
+        overflow: hidden;
+    }
+
+    /* Canvas */
+    #canvas {
+        width: 100%;
+        height: 100%;
+
+        outline: none;
+
+        /* GPU hint */
+        will-change: transform;
+
+        /* subtle inner glow */
+        box-shadow:
+            inset 0 0 120px rgba(0,0,0,0.9),
+            0 0 40px rgba(0,0,0,0.4);
+    }
+
+    /* Top overlay info */
+    .hud {
+        position: absolute;
+        top: 12px;
+        left: 16px;
+
+        font-size: 12px;
+        letter-spacing: 0.05em;
+
+        color: rgba(255,255,255,0.5);
+        user-select: none;
+        pointer-events: none;
+    }
+
+    /* Subtle bottom hint */
+    .hint {
+        position: absolute;
+        bottom: 12px;
+        right: 16px;
+
+        font-size: 11px;
+        color: rgba(255,255,255,0.35);
+        pointer-events: none;
+    }
+
+    /* GUI tweak (lil-gui override) */
+    .lil-gui {
+        backdrop-filter: blur(10px);
+        background: rgba(10,10,15,0.65) !important;
+        border: 1px solid var(--border);
+    }
+
+    .lil-gui .title {
+        color: #fff !important;
+    }
+
+    .lil-gui input {
+        background: #000 !important;
+    }
+
+</style>
+
+
 </head>
 
 <body>
-    <!-- 'tabindex' is a trick to make the canvas capture key events -->
+
+<div class="canvas-wrapper">
     <canvas id="canvas" tabindex="1"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17"></script>
-    <!-- Importar o arquivo JavaScript separado -->
-    <script src="script.js"></script>
 
-    
+    <div class="hud">
+        LIFE SYSTEM • emergent simulation
+    </div>
 
-   
+    <div class="hint">
+        click → pulse • r → random • s → symmetric
+    </div>
+</div>
+
+<!-- GUI -->
+<script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17"></script>
+
+<!-- Main script -->
+<script src="script.js"></script>
 
 </body>
-
 </html>
